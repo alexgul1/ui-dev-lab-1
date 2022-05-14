@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="src/styles.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Calculator</title>
+</head>
+<body class="bg-light">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card text-center mt-5">
+                <div class="card-header">
+                    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="deposit-tab" data-bs-toggle="tab"
+                                    data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit"
+                                    aria-selected="false">Deposit
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link " id="credit-tab" data-bs-toggle="tab" data-bs-target="#credit"
+                                    type="button" role="tab" aria-controls="credit" aria-selected="true">Credit
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade" id="credit" role="tabpanel" aria-labelledby="credit-tab">
+                            <h2 class="card-title mb-4">Credit Calculator</h2>
+                            <form action="" id="loan-form">
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="credit-amount"
+                                               placeholder="Credit Amount">
+                                        <label for="credit-amount">Credit amount</label>
+                                    </div>
+                                </div>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="credit-interest"
+                                               placeholder="Interest">
+                                        <label for="credit-interest">Interest</label>
+                                    </div>
+                                </div>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="credit-years"
+                                               placeholder="Years to repay">
+                                        <label for="credit-years">Years</label>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <input type="submit" value="Calculate" class="btn btn-dark">
+                                </div>
+                            </form>
+                            <!-- Results -->
+                            <div data-id="credit-results" class="pt-4">
+                                <h5>Results</h5>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="credit-total-payment" disabled>
+                                        <label for="credit-total-payment">Total Payment</label>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <input type="submit" id="credit-save-file" value="Save to file"
+                                           class="btn btn-secondary">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade  show active" id="deposit" role="tabpanel"
+                             aria-labelledby="deposit-tab">
+                            <h2 class="card-title mb-4">Deposit Calculator</h2>
+                            <form action="" id="deposit-form">
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="deposit-initial-sum"
+                                               placeholder="Initial Deposit">
+                                        <label for="deposit-initial-sum">Initial Deposit</label>
+                                    </div>
+                                </div>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="deposit-interest"
+                                               placeholder="Interest per year">
+                                        <label for="deposit-interest">Interest</label>
+                                    </div>
+                                </div>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="deposit-years"
+                                               placeholder="Years">
+                                        <label for="deposit-years">Years</label>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <input type="submit" value="Calculate" class="btn btn-dark">
+                                </div>
+                            </form>
+                            <!-- Results -->
+                            <div data-id="deposit-results" class="pt-4">
+                                <h5>Results</h5>
+                                <div class="form-group pb-2">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="deposit-result" disabled>
+                                        <label for="deposit-result">Result</label>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <input type="submit" id="deposit-save-file" value="Save to file"
+                                           class="btn btn-secondary">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed top-0 start-50 p-3 translate-middle-x" style="z-index: 100">
+        <div id="liveToast" class="toast bg-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="src/index.js"></script>
+</body>
+</html>

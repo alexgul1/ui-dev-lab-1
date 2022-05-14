@@ -1,0 +1,6 @@
+/* styles.css */
+
+[data-id="credit-results"],
+[data-id="deposit-results"] {
+    display: none;
+}
